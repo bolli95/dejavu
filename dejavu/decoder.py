@@ -1,8 +1,7 @@
 import os
 import fnmatch
 import numpy as np
-from pydub import AudioSegment
-from pydub.utils import audioop
+import pydub as pd
 import wavio
 from hashlib import sha1
 
@@ -48,7 +47,7 @@ def read(filename, limit=None):
     """
     # pydub does not support 24-bit wav files, use wavio when this occurs
     try:
-        audiofile = AudioSegment.from_file(filename)
+        audiofile = pd.AudioSegment.from_file(filename)
 
         if limit:
             audiofile = audiofile[:limit * 1000]
@@ -60,7 +59,7 @@ def read(filename, limit=None):
             channels.append(data[chn::audiofile.channels])
 
         fs = audiofile.frame_rate
-    except audioop.error:
+    except pd.utils.audioop.error:
         fs, _, audiofile = wavio.readwav(filename)
 
         if limit:

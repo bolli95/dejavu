@@ -54,10 +54,6 @@ sudo easy_install numpy
 sudo easy_install scipy
 sudo easy_install matplotlib
 sudo easy_install pip
-
-sudo pip install MySQL-python
-
-sudo ln -s /usr/local/mysql/lib/libmysqlclient.18.dylib /usr/lib/libmysqlclient.18.dylib
 ```
 
 However installing `portaudio` and/or `ffmpeg` from source is also doable. 
