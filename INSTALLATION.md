@@ -8,7 +8,6 @@ So far Dejavu has only been tested on Unix systems.
 * [`numpy`](http://www.numpy.org/) for taking the FFT of audio signals
 * [`scipy`](http://www.scipy.org/), used in peak finding algorithms
 * [`matplotlib`](http://matplotlib.org/), used for spectrograms and plotting
-* [`MySQLdb`](http://mysql-python.sourceforge.net/MySQLdb.html) for interfacing with MySQL databases
 
 For installing `ffmpeg` on Mac OS X, I highly recommend [this post](http://jungels.net/articles/ffmpeg-howto.html).
 
@@ -26,17 +25,6 @@ Now setup virtualenv ([howto?](http://www.pythoncentral.io/how-to-install-virtua
 
     pip install virtualenv
     virtualenv --system-site-packages env_with_system
-
-Install from PyPI:
-
-    source env_with_system/bin/activate
-    pip install PyDejavu
-
-
-You can also install the latest code from GitHub:
-
-    source env_with_system/bin/activate
-    pip install https://github.com/worldveil/dejavu/zipball/master
 
 ## Max OS X
 
