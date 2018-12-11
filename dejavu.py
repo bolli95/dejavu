@@ -11,7 +11,7 @@ from argparse import RawTextHelpFormatter
 
 warnings.filterwarnings("ignore")
 
-def init(configpath):
+def init():
     return Dejavu()
 
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
                         help='Fingerprint files in a directory\n'
                              'Usages: \n'
                              '--fingerprint /path/to/directory extension /path/to/fingerprint_directory\n'
-                             '--fingerprint /path/to/directory path/to/fingerprint_directory')
+                             '--fingerprint /path/to/file path/to/fingerprint_directory')
     args = parser.parse_args()
 
     if not args.fingerprint:
@@ -39,7 +39,8 @@ if __name__ == '__main__':
             dest_directory = args.fingerprint[2]
             print("Fingerprinting all .%s files in the %s directory"
                   % (extension, directory))
-            djv.fingerprint_directory(directory, ["." + extension], 4)
+            djv.fingerprint_directory(path=directory, extensions=["." + extension], 
+                                        output_dir=dest_directory, nprocesses=4)
 
         elif len(args.fingerprint) == 2:
             filepath = args.fingerprint[0]
@@ -47,10 +48,10 @@ if __name__ == '__main__':
             if os.path.isdir(filepath):
                 print("Please specify an extension if you'd like to fingerprint a directory!")
                 sys.exit(1)
-            djv.fingerprint_file(filepath)
+            djv.fingerprint_file(filepath=filepath, output_dir=dest_directory)
         elif len(args.fingerprint) == 1:
             print "The input has wrong fromat. Please follow the signature below.\n\n"
-            parse_args.print_help()
+            parser.print_help()
             sys.exit(0)
 
     sys.exit(0)

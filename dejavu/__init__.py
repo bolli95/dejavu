@@ -5,7 +5,6 @@ import os
 import traceback
 import sys
 
-
 class Dejavu(object):
 
     SONG_ID = "song_id"
@@ -34,7 +33,7 @@ class Dejavu(object):
             filenames_to_fingerprint.append(filename)
 
         # Prepare _fingerprint_worker input
-        worker_input = zip(filenames_to_fingerprint, len(filenames_to_fingerprint))
+        worker_input = zip(filenames_to_fingerprint, [None] * len(filenames_to_fingerprint))
 
         # Send off our tasks
         iterator = pool.imap_unordered(_fingerprint_worker,
@@ -44,9 +43,11 @@ class Dejavu(object):
         while True:
             try:
                 song_name, hashes, file_hash = iterator.next()
-                f = open(os.path.join(output_dir, song_name, '.fingerp'), 'w')
-                f.write(hashes)
-                f.flush()
+                f = open(os.path.join(output_dir, song_name + '.fingerp'), 'w')
+                sorted_hashes = sorted(list(hashes), key=lambda t: t[1])
+                for t in sorted_hashes:
+                    f.write(str(t[0]) + " - " + str(t[1]) + "\n")
+                    f.flush()
                 f.close()
             except multiprocessing.TimeoutError:
                 continue
@@ -70,9 +71,11 @@ class Dejavu(object):
             song_name=song_name
         )
         
-        f = open(os.path.join(output_dir, song_name, '.fingerp'), 'w')
-        f.write(hashes)
-        f.flush()
+        f = open(os.path.join(output_dir, song_name + '.fingerp'), 'w')
+        sorted_hashes = sorted(list(hashes), key=lambda t: t[1])
+        for t in sorted_hashes:
+            f.write(str(t[0]) + " - " + str(t[1]) + "\n")
+            f.flush()
         f.close()
 
 def _fingerprint_worker(filename, limit=None, song_name=None):
