@@ -5,10 +5,10 @@ This is a fork from an audio fingerprinting tool called dejavu (see [here](https
 I changed the output a little bit so that you don't need a database to extract the fingerprints. They can be directly extracted as text files. 
 This tool just supports the extraction of fingerprints but not the recognition anymore. It was changed for research purposes.
 
-###Installation: 
+### Installation: 
 See [INSTALLATION.md](INSTALLATION.md)
 
-###Getting Started:
+### Getting Started:
 Just use this modified signature of `dejavu.py`:
 
 ``` 
@@ -35,5 +35,5 @@ If you want to fingerprint all files in a specific directory:
 If you just want to fingerprint one file:
 
 ```
-./dejavu.py -f /path/to/audio_files /path/to/output_dir
+./dejavu.py -f /path/to/audio_file /path/to/output_dir
 ``` 
