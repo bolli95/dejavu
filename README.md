@@ -2,8 +2,8 @@ dejavu
 =======
 
 This is a fork from an audio fingerprinting tool called dejavu (see [here](https://github.com/worldveil/dejavu/)). 
-I changed the output a little bit so that you don't need a database to extract the fingerprints. They can be directly extracted as text files. 
-This tool just supports the extraction of fingerprints but not the recognition anymore. It was changed for research purposes.
+I changed the output a little bit so that you don't need a database to extract the fingerprints. They can be extracted as text files directly. 
+This tool just supports the extraction of fingerprints but not the recognition anymore.
 
 ### Installation: 
 See [INSTALLATION.md](INSTALLATION.md)
